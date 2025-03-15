@@ -6,11 +6,7 @@ class Book:
         self.author = "Sabir ali"
         self.genre = "new"
         self.publication_year = 2025
-        import streamlit as st
-
-# Display an image from your project folder
-
-
+        
 
     def __str__(self):
         return f"{self.title} by {self.author} ({self.genre}, {self.publication_year})"
@@ -41,8 +37,6 @@ class Library:
 library = Library()
 import streamlit as st
 
-# Display an image from your project folder
-st.image("c:\Users\haroon trader\Documents\Custom Office Templates\th (2).jpeg", caption="english", width=300)
 
 # Streamlit interface
 st.title("Library System")
