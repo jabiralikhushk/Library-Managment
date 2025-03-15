@@ -1,16 +1,6 @@
 import streamlit as st
 import pandas as pd
 import json
-# Correct the statement structure on Line 5
-import os  # Assuming you meant os here
-import time
-import random
-import plotly.express as px
-import plotly.graph_objects as go
-from streamlit_lottie import st_lottie
-import requests 
-
-
 
 import tkinter as  tk
 from tkinter import messagebox
