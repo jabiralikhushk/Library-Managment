@@ -1,0 +1,34 @@
+[
+    {
+        "title": "Python crash course",
+        "author": "eric matthes",
+         "publication_year":2019
+        "genre": "programming",
+        "status": "false"
+        "added_data":"25_11_2025"
+    },
+    {
+         "title": "automate boring system with python",
+        "author": "Fiza sagar",
+         "publication_year":2011
+        "genre": "programming",
+        "status": "true"
+        "added_data":"25_11_2025"
+    },
+    {
+        "title": "Fluent python",
+        "author": "Rumalho",
+         "publication_year":2022
+        "genre": "programming",
+        "status": "false"
+        "added_data":"25_11_2025"
+    },
+    {      
+      "title": "effective python",
+        "author": "Bret skelton",
+         "publication_year":2023
+        "genre": "programming",
+        "status": "true"
+        "added_data":"25_11_2025"
+    }
+]
