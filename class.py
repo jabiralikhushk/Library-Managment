@@ -2,10 +2,10 @@ import streamlit as st
 
 class Book:
     def __init__(self, title, author, genre, publication_year):
-        self.title = title
-        self.author = author
-        self.genre = genre
-        self.publication_year = publication_year
+        self.title = "python"
+        self.author = "Sabir ali"
+        self.genre = "New"
+        self.publication_year = 2025
 
     def __str__(self):
         return f"{self.title} by {self.author} ({self.genre}, {self.publication_year})"
@@ -41,10 +41,10 @@ st.title("Library System")
 option = st.selectbox("Choose an action", ["Add Book", "Remove Book", "Search Book", "Display Books"])
 
 if option == "Add Book":
-    title = st.text_input("Title")
-    author = st.text_input("Author")
-    genre = st.text_input("Genre")
-    year = st.text_input("Publication Year")
+    title = st.text_input("English")
+    author = st.text_input("Wiliam shakesphere")
+    genre = st.text_input("New")
+    year = st.text_input("2025")
     if st.button("Add"):
         if title and author and genre and year:
             book = Book(title, author, genre, year)
@@ -54,7 +54,7 @@ if option == "Add Book":
             st.error("All fields must be filled.")
 
 elif option == "Remove Book":
-    title = st.text_input("Title of the book to remove")
+    title = st.text_input("English")
     if st.button("Remove"):
         if title and library.remove_book(title):
             st.success("Book removed successfully!")
@@ -62,7 +62,7 @@ elif option == "Remove Book":
             st.error("Book not found.")
 
 elif option == "Search Book":
-    title = st.text_input("Title of the book to search")
+    title = st.text_input("physics")
     if st.button("Search"):
         book = library.search_by_title(title)
         if book:
