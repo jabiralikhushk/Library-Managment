@@ -2,10 +2,15 @@ import streamlit as st
 
 class Book:
     def __init__(self, title, author, genre, publication_year):
-        self.title = "python"
+        self.title = "english"
         self.author = "Sabir ali"
-        self.genre = "New"
+        self.genre = "new"
         self.publication_year = 2025
+        import streamlit as st
+
+# Display an image from your project folder
+
+
 
     def __str__(self):
         return f"{self.title} by {self.author} ({self.genre}, {self.publication_year})"
@@ -34,6 +39,10 @@ class Library:
         return "\n".join(str(book) for book in self.books)
 
 library = Library()
+import streamlit as st
+
+# Display an image from your project folder
+st.image("c:\Users\haroon trader\Documents\Custom Office Templates\th (2).jpeg", caption="english", width=300)
 
 # Streamlit interface
 st.title("Library System")
@@ -41,10 +50,10 @@ st.title("Library System")
 option = st.selectbox("Choose an action", ["Add Book", "Remove Book", "Search Book", "Display Books"])
 
 if option == "Add Book":
-    title = st.text_input("English")
-    author = st.text_input("Wiliam shakesphere")
-    genre = st.text_input("New")
-    year = st.text_input("2025")
+    title = st.text_input("Title")
+    author = st.text_input("Author")
+    genre = st.text_input("Genre")
+    year = st.text_input("Publication Year")
     if st.button("Add"):
         if title and author and genre and year:
             book = Book(title, author, genre, year)
@@ -54,7 +63,7 @@ if option == "Add Book":
             st.error("All fields must be filled.")
 
 elif option == "Remove Book":
-    title = st.text_input("English")
+    title = st.text_input("Title of the book to remove")
     if st.button("Remove"):
         if title and library.remove_book(title):
             st.success("Book removed successfully!")
@@ -62,7 +71,7 @@ elif option == "Remove Book":
             st.error("Book not found.")
 
 elif option == "Search Book":
-    title = st.text_input("physics")
+    title = st.text_input("Title of the book to search")
     if st.button("Search"):
         book = library.search_by_title(title)
         if book:
