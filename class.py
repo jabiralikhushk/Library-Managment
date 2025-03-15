@@ -12,17 +12,17 @@ import requests
 
 
 
-
+import tkinter as  tk
+from tkinter import messagebox
 class Book:
-    def __init__(self, title, author, genre, status="Available"):
+    def __init__(self, title, author, genre, publication_year):
         self.title = title
         self.author = author
         self.genre = genre
-        self.status = status
+        self.publication_year = publication_year
 
     def __str__(self):
-        return f"Title: {self.title}, Author: {self.author}, Genre: {self.genre}, Status: {self.status}"
-
+        return f"{self.title} by {self.author} ({self.genre}, {self.publication_year})"
 
 class Library:
     def __init__(self):
@@ -31,97 +31,110 @@ class Library:
     def add_book(self, book):
         self.books.append(book)
 
-    def view_books(self):
-        if not self.books:
-            print("No books in the library.")
-        else:
-            for book in self.books:
-                print(book)
-
-    def delete_book(self, title):
+    def remove_book(self, title):
         for book in self.books:
-            if book.title.lower() == title.lower():
+            if book.title == title:
                 self.books.remove(book)
-                print(f"Book '{title}' has been deleted.")
-                return
-        print(f"Book '{title}' not found.")
+                return True
+        return False
 
-    def search_book(self, search_term):
-        found_books = [book for book in self.books if search_term.lower() in book.title.lower() or search_term.lower() in book.author.lower()]
-        if found_books:
-            for book in found_books:
-                print(book)
-        else:
-            print(f"No books found matching '{search_term}'.")
-
-    def update_book(self, title, new_title=None, new_author=None, new_genre=None, new_status=None):
+    def search_by_title(self, title):
         for book in self.books:
-            if book.title.lower() == title.lower():
-                if new_title:
-                    book.title = new_title
-                if new_author:
-                    book.author = new_author
-                if new_genre:
-                    book.genre = new_genre
-                if new_status:
-                    book.status = new_status
-                print(f"Book '{title}' has been updated.")
-                return
-        print(f"Book '{title}' not found.")
+            if book.title == title:
+                return book
+        return None
 
+    def display_books(self):
+        return "\n".join(str(book) for book in self.books)
 
-def menu():
-    print("\nLibrary Management System")
-    print("1. Add Book")
-    print("2. View Books")
-    print("3. Delete Book")
-    print("4. Search Book")
-    print("5. Update Book")
-    print("6. Exit")
+class LibraryApp:
+    def __init__(self, root):
+        self.library = Library()
+        self.root = root
+        self.root.title("Library System")
+
+        # Labels and Entry widgets
+        tk.Label(root, text="Title").grid(row=0, column=0)
+        self.title_entry = tk.Entry(root)
+        self.title_entry.grid(row=0, column=1)
+
+        tk.Label(root, text="Author").grid(row=1, column=0)
+        self.author_entry = tk.Entry(root)
+        self.author_entry.grid(row=1, column=1)
+
+        tk.Label(root, text="Genre").grid(row=2, column=0)
+        self.genre_entry = tk.Entry(root)
+        self.genre_entry.grid(row=2, column=1)
+
+        tk.Label(root, text="Year").grid(row=3, column=0)
+        self.year_entry = tk.Entry(root)
+        self.year_entry.grid(row=3, column=1)
+
+        # Buttons
+        tk.Button(root, text="Add Book", command=self.add_book).grid(row=4, column=0, columnspan=2)
+        tk.Button(root, text="Remove Book", command=self.remove_book).grid(row=5, column=0, columnspan=2)
+        tk.Button(root, text="Search Book", command=self.search_book).grid(row=6, column=0, columnspan=2)
+        tk.Button(root, text="Display Books", command=self.display_books).grid(row=7, column=0, columnspan=2)
+
+        # Text widget for displaying results
+        self.result_text = tk.Text(root, height=10, width=40)
+        self.result_text.grid(row=8, column=0, columnspan=2)
+
+    def add_book(self):
+        title = self.title_entry.get()
+        author = self.author_entry.get()
+        genre = self.genre_entry.get()
+        year = self.year_entry.get()
+
+        if title and author and genre and year:
+            book = Book(title, author, genre, year)
+            self.library.add_book(book)
+            messagebox.showinfo("Success", "Book added successfully!")
+            self.clear_entries()
+        else:
+            messagebox.showwarning("Input Error", "All fields must be filled.")
+
+    def remove_book(self):
+        title = self.title_entry.get()
+        if title:
+            if self.library.remove_book(title):
+                messagebox.showinfo("Success", "Book removed successfully!")
+            else:
+                messagebox.showwarning("Error", "Book not found.")
+            self.clear_entries()
+        else:
+            messagebox.showwarning("Input Error", "Title field must be filled.")
+
+    def search_book(self):
+        title = self.title_entry.get()
+        if title:
+            book = self.library.search_by_title(title)
+            if book:
+                self.result_text.delete(1.0, tk.END)
+                self.result_text.insert(tk.END, str(book))
+            else:
+                self.result_text.delete(1.0, tk.END)
+                self.result_text.insert(tk.END, "Book not found.")
+        else:
+            messagebox.showwarning("Input Error", "Title field must be filled.")
+
+    def display_books(self):
+        books = self.library.display_books()
+        self.result_text.delete(1.0, tk.END)
+        self.result_text.insert(tk.END, books if books else "No books in the library.")
+
+    def clear_entries(self):
+        self.title_entry.delete(0, tk.END)
+        self.author_entry.delete(0, tk.END)
+        self.genre_entry.delete(0, tk.END)
+        self.year_entry.delete(0, tk.END)
 
 def main():
-    library = Library()
-
-    while True:
-        menu()
-        choice = input("Enter your choice (1-6): ")
-
-        if choice == '1':
-            title = input("Enter book title: ")
-            author = input("Enter book author: ")
-            genre = input("Enter book genre: ")
-            book = Book(title, author, genre)
-            library.add_book(book)
-            print("Book added successfully.")
-        
-        elif choice == '2':
-            library.view_books()
-        
-        elif choice == '3':
-            title = input("Enter book title to delete: ")
-            library.delete_book(title)
-
-        elif choice == '4':
-            search_term = input("Enter title or author to search: ")
-            library.search_book(search_term)
-
-        elif choice == '5':
-            title = input("Enter book title to update: ")
-            print("Leave blank to keep current values.")
-            new_title = input("Enter new title: ")
-            new_author = input("Enter new author: ")
-            new_genre = input("Enter new genre: ")
-            new_status = input("Enter new status (Available/Checked Out): ")
-            library.update_book(title, new_title, new_author, new_genre, new_status)
-
-        elif choice == '6':
-            print("Exiting the system...")
-            break
-
-        else:
-            print("Invalid choice! Please select again.")
-
+    root = tk.Tk()
+    app = LibraryApp(root)
+    root.mainloop()
 
 if __name__ == "__main__":
     main()
+
 
