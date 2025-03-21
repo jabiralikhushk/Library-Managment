@@ -304,10 +304,12 @@ def some_function():
         st.markdown("<h2 class='sub-header'>Add a New Book</h2>", unsafe_allow_html=True)
 
                     # adding books input form 
-                    def some_function():
-    if st.session_state.current_view == "add":
-        # Correctly indented inside the if block
-        with st.form(key='add_book_form'):
+if some_condition:
+    # Indent the function correctly inside the if block
+    def some_function():
+        # Function content goes here
+        pass
+
             # Form contents go here
             title = st.text_input("Book title", max_chars=100)
             author = st.text_input("Author", max_chars=100)
