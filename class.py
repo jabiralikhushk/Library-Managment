@@ -307,10 +307,7 @@ def some_function():
 if some_condition:
     # Indent the function correctly inside the if block
     def some_function():
-        # Function content goes here
-        pass
-
-        def add_book_form():
+      def add_book_form():
     title = st.text_input("Book title", max_chars=100)  # Indent this line correctly
     author = st.text_input("Author", max_chars=100)
     # Further form code here
