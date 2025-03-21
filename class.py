@@ -214,7 +214,7 @@ def get_library_state():
     }
 
 def create_visulation(stats):
-if stats ['total_book']>0:
+    if stats['total_books'] > 0:
     fig_read_status = go.Figure(data=[go.pie(
         lables= ['read' , 'un read'],
         values = [stats['read_books'],stats
