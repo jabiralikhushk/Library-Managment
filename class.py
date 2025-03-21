@@ -306,19 +306,21 @@ def some_function():
                     # adding books input form 
 if some_condition:
     # Indent the function correctly inside the if block
-    def some_function():
-   def add_book_form():
-    title = st.text_input("Book title", max_chars=100)
-    author = st.text_input("Author", max_chars=100)
-    publication_year = st.number_input("Publication Year", min_value=1000, max_value=datetime.now().year, step=1)
-    genre = st.selectbox("Genre", ["Fiction", "Non-Fiction", "Technology", "Fantasy", "Romance", "Poetry", "Art"])
-    read_status = st.radio("Read Status", ["Read", "Unread"], horizontal=True)
-    
-    submit_button = st.form_submit_button(label="Add Book")
-    
-    if submit_button and title and author:
-        # Code to add book to library
-        pass
+def some_function():
+    # Inside some_function, we define add_book_form with proper indentation
+    def add_book_form():
+        title = st.text_input("Book title", max_chars=100)
+        author = st.text_input("Author", max_chars=100)
+        publication_year = st.number_input("Publication Year", min_value=1000, max_value=datetime.now().year, step=1)
+        genre = st.selectbox("Genre", ["Fiction", "Non-Fiction", "Technology", "Fantasy", "Romance", "Poetry", "Art"])
+        read_status = st.radio("Read Status", ["Read", "Unread"], horizontal=True)
+        
+        submit_button = st.form_submit_button(label="Add Book")
+        
+        if submit_button and title and author:
+            # Add book logic here
+            pass
+
 
                                     add_book(title,author,publication_year,genre,read_status)
                                     if st.session_state.book_added:
