@@ -310,10 +310,11 @@ if some_condition:
         # Function content goes here
         pass
 
-            # Form contents go here
-            title = st.text_input("Book title", max_chars=100)
-            author = st.text_input("Author", max_chars=100)
-            # etc.
+        def add_book_form():
+    title = st.text_input("Book title", max_chars=100)  # Indent this line correctly
+    author = st.text_input("Author", max_chars=100)
+    # Further form code here
+
 
                             publication_year = st.number_input 
                             "publication_year" , min_value=1000,max_value= datetime.now().year, step=1 ,value =2023
