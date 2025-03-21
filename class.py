@@ -304,11 +304,15 @@ def some_function():
         st.markdown("<h2 class='sub-header'>Add a New Book</h2>", unsafe_allow_html=True)
 
                     # adding books input form 
-                    with st.form(key= 'add_book_form'):
-                        col1, col2=st.columns(2)
-                        with col1:
-                            title= st.text_input("book title",max_chars=100)
-                            author= st.text_input("author",max_chars=100)
+                    def some_function():
+    if st.session_state.current_view == "add":
+        # Correctly indented inside the if block
+        with st.form(key='add_book_form'):
+            # Form contents go here
+            title = st.text_input("Book title", max_chars=100)
+            author = st.text_input("Author", max_chars=100)
+            # etc.
+
                             publication_year = st.number_input 
                             "publication_year" , min_value=1000,max_value= datetime.now().year, step=1 ,value =2023
                             with col2:
