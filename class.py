@@ -297,8 +297,12 @@ if st.session_state.current_view == "library":
     st.markdown("<h1 class='main-header'> Personal Library Manager </h1>", unsafe_allow_html=True)
     # other code...
 
-                if st.session_state.current_view== "add":
-                    st.markdown("<h2 class= 'sub.header'>add a new book </h2>", unsafe_allow_html= True)
+               # Example: If inside a function
+def some_function():
+    if st.session_state.current_view == "add":
+        # indented properly inside the if block
+        st.markdown("<h2 class='sub-header'>Add a New Book</h2>", unsafe_allow_html=True)
+
                     # adding books input form 
                     with st.form(key= 'add_book_form'):
                         col1, col2=st.columns(2)
