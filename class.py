@@ -292,8 +292,11 @@ def create_visulation(stats):
                     st.session_state.current_view= "search"
                 elif new_option== "library statistics":
                     st.session_state.current_view= "stats"
-                  st.markdown( " <h1 class= 'main.header'> personsl library manager </h1>",
-                              unsafe_allow_html= True )
+# Example of properly indented code:
+if st.session_state.current_view == "library":
+    st.markdown("<h1 class='main-header'> Personal Library Manager </h1>", unsafe_allow_html=True)
+    # other code...
+
                 if st.session_state.current_view== "add":
                     st.markdown("<h2 class= 'sub.header'>add a new book </h2>", unsafe_allow_html= True)
                     # adding books input form 
