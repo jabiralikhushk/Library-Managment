@@ -2,6 +2,9 @@ plotly
 streamlit
 pandas
 streamlit-lottie
+git add requirements.txt
+git commit -m "Added plotly to requirements.txt"
+git push origin main
 
 
 
