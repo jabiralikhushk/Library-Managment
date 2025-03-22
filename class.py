@@ -383,3 +383,52 @@ elif st.session_state.current_view == "stats":
                 st.markdown(f"**{author}**: {count} book{'s' if count > 1 else ''}")
                 st.markdown("_ _ _")
     st.markdown("Copyright @ 2025 Jabir Ali Personal Library Manager", unsafe_allow_html=True)
+    # Example: If you are using an in-memory list to store books
+library = []
+
+# Add sample books to the library
+library.append({
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "year": 1925
+})
+
+library.append({
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "year": 1960
+})
+
+# Display library
+print(library)
+import streamlit as st
+
+# Placeholder for books
+books = []
+
+# Title input
+title = st.text_input("Enter the book title:")
+
+# Author input
+author = st.text_input("Enter the author name:")
+
+# Year input
+year = st.number_input("Enter the year of publication:", min_value=1900, max_value=2025)
+
+# Button to add book
+if st.button("Add Book"):
+    if title and author:
+        books.append({"title": title, "author": author, "year": year})
+        st.success("Book added successfully!")
+    else:
+        st.warning("Please enter both title and author.")
+
+# Display the current library
+if books:
+    st.write("### Your Library")
+    for book in books:
+        st.write(f"{book['title']} by {book['author']} ({book['year']})")
+else:
+    st.write("Your library is empty. Add some books to get started!")
+
+
